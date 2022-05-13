@@ -28,7 +28,8 @@ global:
   namespaceOverride: ""
 
 
-replicaCount: 1
+replicas: 1
+
 modelName: Vit-B/16
 deviceName:
 miniBatchSize: 64
