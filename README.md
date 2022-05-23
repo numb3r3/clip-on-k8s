@@ -4,7 +4,7 @@ This is where I keep my helm charts!
 
 Currently, the available charts are:
 
-- [Clip-on-K8S](./charts/clip-on-k8s/README.md)
+- [clip-on-k8s](./charts/clip-on-k8s/README.md)
 
 ## Install a chart
 
