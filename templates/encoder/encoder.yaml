@@ -59,7 +59,7 @@ spec:
         - --k8s-namespace
         - {{ template "cas-helm.namespace" . }}
         - --uses
-        - config.yml
+        - /tmp/config.yml
         - --port
         - '8080'
         - --replicas
@@ -82,7 +82,7 @@ spec:
         - configMapRef:
             name: clip-encoder-configmap
         image: {{ $.Values.image.repository }}:{{ $.Values.image.tag }}
-        imagePullPolicy: { { $.Values.image.pullPolicy } }
+        imagePullPolicy: {{ $.Values.image.pullPolicy }}
         name: executor
         ports:
         - containerPort: 8080

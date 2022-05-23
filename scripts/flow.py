@@ -1,7 +1,7 @@
 from jina import Flow
 
 
-f = Flow(port=51000) \
+f = Flow(protocol='http', port=51000, monitoring=True) \
     .add(name='clip_encoder',
          uses='docker://jinaai/clip_executor:master',
          replicas=2,

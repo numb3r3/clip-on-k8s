@@ -18,9 +18,15 @@ metadata:
 spec:
   ports:
   - name: port
-    port: {{ $.Values.service.port }}
+    port: {{ $.Values.gateway.port }}
     protocol: TCP
-    targetPort: {{ $.Values.service.port }}
+    targetPort: {{ $.Values.gateway.port }}
+{{- if $.Values.monitoring.enabled }}
+  - name: monitoring
+    port: {{ $.Values.monitoring.port }}
+    protocol: TCP
+    targetPort: {{ $.Values.monitoring.port }}
+{{- end }}
   selector:
     app: gateway
   type: ClusterIP
@@ -31,7 +37,7 @@ metadata:
   name: gateway
   namespace: {{ template "cas-helm.namespace" . }}
 spec:
-  replicas: {{ $.Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
       app: gateway
@@ -59,15 +65,20 @@ spec:
         - --polling
         - ANY
         - --port
-        - {{ $.Values.service.port | squote }}
+        - {{ $.Values.gateway.port | squote }}
         - --expose-endpoints
         - '{}'
+        - --protocol
+        - {{ $.Values.gateway.protocol }}
         - --graph-description
         - '{"clip_encoder": ["end-gateway"], "start-gateway": ["clip_encoder"]}'
         - --deployments-addresses
         - '{"clip_encoder": ["grpc://clip-encoder.{{ template "cas-helm.namespace" . }}.svc:8080"]}'
         - --pod-role
         - GATEWAY
+        {{- if $.Values.monitoring.enabled }}
+        - --monitoring
+        {{- end }}
         command:
         - jina
         env:
@@ -80,13 +91,13 @@ spec:
         envFrom:
         - configMapRef:
             name: gateway-configmap
-        image: jinaai/jina:latest-py38-standard
+        image: jinaai/jina:3.3.25-py38-standard
         imagePullPolicy: IfNotPresent
         name: executor
         ports:
-        - containerPort: {{ $.Values.service.port }}
+        - containerPort: {{ $.Values.gateway.port }}
         readinessProbe:
           initialDelaySeconds: 5
           periodSeconds: 10
           tcpSocket:
-            port: {{ $.Values.service.port }}
+            port: {{ $.Values.gateway.port }}
