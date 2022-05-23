@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  mlflow:
+  - apiVersion: v2
+    appVersion: 0.5.0
+    created: "2022-05-19T13:26:05.610346618Z"
+    description: A Helm chart for Clip-as-Service
+    digest: 5be193bab35dfbe2c7e7ac6fa3027d7072cbb0fb8eda617b4ba298395dc7a80b
+    home: https://github.com/numb3r3/helm-charts
+    maintainers:
+    - name: Felix
+      url: https://github.com/numb3r3
+    name: clip-on-k8s
+    sources:
+    - https://github.com/numb3r3/helm-charts
+    type: application
+    urls:
+    - https://github.com/numb3r3/helm-charts/releases/download/cas-helm-0.1.5/cas-helm-0.1.5.tgz
+    version: 0.1.5
+generated: "2022-05-19T13:26:05.610368418Z"

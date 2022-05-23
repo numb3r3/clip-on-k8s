@@ -2,7 +2,7 @@
 
 A Helm chart for Clip-as-Service (https://clip-as-service.jina.ai/)
 
-**Homepage:** <https://github.com/numb3r3/charts>
+**Homepage:** <https://github.com/numb3r3/helm-charts>
 
 ## Maintainers
 
