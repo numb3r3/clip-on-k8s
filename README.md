@@ -11,8 +11,8 @@ Currently, the available charts are:
 Assuming you have [Helm](https://helm.sh/) installed,
 
 ```sh
-helm repo add numb3r3 https://numb3r3.github.io/charts/
-helm upgrade --cleanup-on-fail --install -n jina-clip-on-k8s --create-namespace my-clip-on-k8s numb3r3/clip-on-k8s
+helm repo add jina https://numb3r3.github.io/helm-charts/
+helm upgrade --cleanup-on-fail --install -n jina-clip-on-k8s --create-namespace my-clip-on-k8s jina/clip-on-k8s
 ```
 
 For customization options, see the README.md for [each chart](./charts/).
