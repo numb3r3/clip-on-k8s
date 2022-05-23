@@ -38,9 +38,10 @@ monitoring:
 replicas: 1
 
 modelName: Vit-B/16
-deviceName:
 miniBatchSize: 64
 
+
+deviceName: "cpu"
 
 image:
   registry: docker.io
